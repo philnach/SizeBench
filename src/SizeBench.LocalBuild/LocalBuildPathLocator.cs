@@ -29,7 +29,7 @@ public class LocalBuildPathLocator : IBinaryLocator
         var lastIndexOfDotPdb = pdbPath.LastIndexOf(".pdb", StringComparison.OrdinalIgnoreCase);
         if (lastIndexOfDotPdb > 0)
         {
-            var clangPossibleBinaryPath = pdbPath.Remove(lastIndexOfDotPdb);
+            var clangPossibleBinaryPath = pdbPath[..lastIndexOfDotPdb]; // Simplified using range operator
             if (clangPossibleBinaryPath != pdbPath && File.Exists(clangPossibleBinaryPath))
             {
                 binaryPath = clangPossibleBinaryPath;
