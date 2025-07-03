@@ -166,6 +166,7 @@ internal sealed class DIAAdapter : IDIAAdapter, IDisposable
             case 0x8664: // IMAGE_FILE_MACHINE_AMD64
             case 0x01c4: // IMAGE_FILE_MACHINE_ARM
             case 0xAA64: // IMAGE_FILE_MACHINE_ARM64
+            case 0xA641: // IMAGE_FILE_MACHINE_ARM64EC
                 break;
             case 0: // Machine type not set in the PDB - ngen seems to do this, maybe other toolchains do too?
                 throw new BinaryNotAnalyzableException("This binary does not have a machine type set in the PDB.  SizeBench does not yet know how to analyze this code.  Is this an ngen'd binary?");
@@ -173,8 +174,6 @@ internal sealed class DIAAdapter : IDIAAdapter, IDisposable
                 throw new BinaryNotAnalyzableException("This binary appears to contain managed code.  SizeBench does not yet know how to analyze managed code.");
             case 0x3A64: // IMAGE_FILE_MACHINE_CHPE_X86
                 throw new BinaryNotAnalyzableException("This binary appears to be a CHPE binary.  SizeBench does not yet know how to analyze CHPE binaries.");
-            case 0xA641: // IMAGE_FILE_MACHINE_ARM64EC
-                throw new BinaryNotAnalyzableException("This binary appears to be a ARM64EC binary.  SizeBench does not yet know how to analyze ARM64EC binaries.");
             case 0xA64E: // IMAGE_FILE_MACHINE_ARM64X
                 throw new BinaryNotAnalyzableException("This binary appears to be a ARM64X binary.  SizeBench does not yet know how to analyze ARM64X binaries.");
 

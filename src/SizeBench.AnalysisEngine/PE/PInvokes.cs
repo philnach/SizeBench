@@ -58,7 +58,8 @@ public enum MachineType : ushort
     Itanium = 0x0200,
     x64 = 0x8664,
     ARM = 0x01c4,
-    ARM64 = 0xAA64
+    ARM64 = 0xAA64,
+    ARM64EC = 0xA641
 }
 
 internal enum MagicType : ushort

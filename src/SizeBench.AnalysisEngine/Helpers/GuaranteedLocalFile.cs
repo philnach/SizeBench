@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Net;
-using System.Runtime.InteropServices;
 using SizeBench.Logging;
 
 namespace SizeBench.AnalysisEngine.Helpers;
@@ -78,9 +77,9 @@ internal sealed partial class GuaranteedLocalFile : IDisposable
 
     private static bool IsLocalPath(string path)
     {
-        if (!PathIsUNC(path))
+        if (!IsUNCPath(path))
         {
-            return !PathIsNetworkPath(path);
+            return !IsNetworkPath(path);
         }
 
         var uri = new Uri(path);
@@ -106,15 +105,81 @@ internal sealed partial class GuaranteedLocalFile : IDisposable
         return host.Any(hostAddress => IPAddress.IsLoopback(hostAddress) || local.Contains(hostAddress));
     }
 
-    [DefaultDllImportSearchPaths(DllImportSearchPath.SafeDirectories)]
-    [LibraryImport("Shlwapi.dll", EntryPoint = "PathIsNetworkPathW", SetLastError = true, StringMarshalling = StringMarshalling.Utf16)]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    private static partial bool PathIsNetworkPath([MarshalAs(UnmanagedType.LPWStr)] string pszPath);
+    /// <summary>
+    /// Cross-platform implementation of PathIsUNC functionality.
+    /// Determines if a path is a UNC (Universal Naming Convention) path.
+    /// </summary>
+    private static bool IsUNCPath(string path)
+    {
+        if (string.IsNullOrEmpty(path))
+        {
+            return false;
+        }
 
-    [DefaultDllImportSearchPaths(DllImportSearchPath.SafeDirectories)]
-    [LibraryImport("Shlwapi.dll", EntryPoint="PathIsUNCW", SetLastError = true, StringMarshalling = StringMarshalling.Utf16)]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    private static partial bool PathIsUNC([MarshalAs(UnmanagedType.LPWStr)] string pszPath);
+        // UNC paths start with \\
+        if (path.StartsWith(@"\\", StringComparison.Ordinal))
+        {
+            return true;
+        }
+
+        // Handle URI-style paths (file://, http://, etc.)
+        if (Uri.TryCreate(path, UriKind.Absolute, out var uri))
+        {
+            return uri.IsUnc || 
+                   !uri.IsFile || 
+                   (uri.IsFile && !string.IsNullOrEmpty(uri.Host) && !IsLocalHost(uri.Host));
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Cross-platform implementation of PathIsNetworkPath functionality.
+    /// Determines if a path refers to a network location.
+    /// </summary>
+    private static bool IsNetworkPath(string path)
+    {
+        if (string.IsNullOrEmpty(path))
+        {
+            return false;
+        }
+
+        // Check for UNC paths first
+        if (IsUNCPath(path))
+        {
+            return true;
+        }
+
+        // On Windows, check for mapped network drives (drive letters that are network mapped)
+        if (OperatingSystem.IsWindows() && path.Length >= 2 && char.IsLetter(path[0]) && path[1] == ':')
+        {
+            try
+            {
+                var driveInfo = new DriveInfo(path[..2]);
+                return driveInfo.DriveType == DriveType.Network;
+            }
+#pragma warning disable CA1031 // Do not catch general exception types - if we throw for some reason that's not very important to the intent of this code, error handling here isn't worth much effort.
+            catch
+            {
+                // If we can't determine the drive type, assume it's local
+                return false;
+            }
+#pragma warning restore CA1031
+        }
+
+        // Check for network URI schemes
+        if (Uri.TryCreate(path, UriKind.Absolute, out var uri))
+        {
+            return uri.Scheme switch
+            {
+                "file" => !string.IsNullOrEmpty(uri.Host) && !IsLocalHost(uri.Host),
+                "http" or "https" or "ftp" or "sftp" or "smb" => true,
+                _ => false
+            };
+        }
+
+        return false;
+    }
 
     private bool _isDisposed;
     ~GuaranteedLocalFile() { Dispose(false); }

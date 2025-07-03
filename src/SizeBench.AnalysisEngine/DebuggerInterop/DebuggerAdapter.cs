@@ -85,6 +85,7 @@ internal sealed class DebuggerAdapter : IDebuggerAdapter, IDbgEnginePathCustomiz
             PE.MachineType.x64 => "X64",
             PE.MachineType.ARM => "ARM",
             PE.MachineType.ARM64 => "ARM64",
+            PE.MachineType.ARM64EC => "ARM64EC",
             _ => throw new ArgumentOutOfRangeException(nameof(machineType), $"Unknown machine type {machineType} passed in - need to convert this to something the CreateDisassembler API will accept!"),
         };
         taskLog.Log($"Debugger target architecture is {this._targetArch}");

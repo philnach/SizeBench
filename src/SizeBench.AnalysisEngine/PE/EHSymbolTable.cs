@@ -18,6 +18,7 @@ internal static class EHSymbolTable
                 break;
             case MachineType.ARM:
             case MachineType.ARM64:
+            case MachineType.ARM64EC:
                 ehParser = new ARM_EHParser(diaAdapter,
                                             libraryBaseAddress,
                                             peFile,

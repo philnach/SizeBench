@@ -163,6 +163,7 @@ internal sealed partial class PEFile : IPEFile
             Machine.I386 => MachineType.I386,
             Machine.Arm or Machine.ArmThumb2 => MachineType.ARM,
             Machine.Arm64 => MachineType.ARM64,
+            (Machine)0xA641 => MachineType.ARM64EC, // Machine.Arm64EC when available in future .NET versions
             _ => throw new InvalidOperationException($"SizeBench does not know how to deal with MachineType={this.PEReader.PEHeaders.CoffHeader.Machine} binaries at this time.")
         };
 
