@@ -3,6 +3,8 @@
 
 #include "stdafx.h"
 #include <exception>
+#include <cstdio> // Added to resolve 'printf' identifier not found error
+#include <stdexcept> // Added to resolve 'std::runtime_error' not found error
 
 bool DllARM64EC_CppxdataUsage::MaybeThrow()
 {

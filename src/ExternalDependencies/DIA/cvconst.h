@@ -40,7 +40,8 @@ typedef enum CV_call_e
     CV_CALL_INLINE      = 0x17, // Marker for routines always inlined and thus lacking a convention
     CV_CALL_NEAR_VECTOR = 0x18, // near left to right push with regs, callee pops stack
     CV_CALL_SWIFT       = 0x19, // Swift calling convention
-    CV_CALL_RESERVED    = 0x20  // first unused call enumeration
+    CV_CALL_PRESERVE_NONE = 0x20, // All registers caller saved
+    CV_CALL_RESERVED    = 0x21  // first unused call enumeration
 
     // Do NOT add any more machine specific conventions.  This is to be used for
     // calling conventions in the source only (e.g. __cdecl, __stdcall).
@@ -321,6 +322,7 @@ typedef enum CV_CFL_LANG
     CV_CFL_SWIFT    = 0x13,  // Swift
     CV_CFL_ALIASOBJ = 0x14,
     CV_CFL_RUST     = 0x15,  // Rust
+    CV_CFL_GO       = 0x16,  // Go
 } CV_CFL_LANG;
 
 
@@ -1892,6 +1894,61 @@ typedef enum CV_HREG_e
     CV_ARM64_Q29H   =  379,
     CV_ARM64_Q30H   =  380,
     CV_ARM64_Q31H   =  381,
+
+    // Scalable Vector Extension (SVE)
+
+    CV_ARM64_Z0     =  382,
+    CV_ARM64_Z1     =  383,
+    CV_ARM64_Z2     =  384,
+    CV_ARM64_Z3     =  385,
+    CV_ARM64_Z4     =  386,
+    CV_ARM64_Z5     =  387,
+    CV_ARM64_Z6     =  388,
+    CV_ARM64_Z7     =  389,
+    CV_ARM64_Z8     =  390,
+    CV_ARM64_Z9     =  391,
+    CV_ARM64_Z10    =  392,
+    CV_ARM64_Z11    =  393,
+    CV_ARM64_Z12    =  394,
+    CV_ARM64_Z13    =  395,
+    CV_ARM64_Z14    =  396,
+    CV_ARM64_Z15    =  397,
+    CV_ARM64_Z16    =  398,
+    CV_ARM64_Z17    =  399,
+    CV_ARM64_Z18    =  400,
+    CV_ARM64_Z19    =  401,
+    CV_ARM64_Z20    =  402,
+    CV_ARM64_Z21    =  403,
+    CV_ARM64_Z22    =  404,
+    CV_ARM64_Z23    =  405,
+    CV_ARM64_Z24    =  406,
+    CV_ARM64_Z25    =  407,
+    CV_ARM64_Z26    =  408,
+    CV_ARM64_Z27    =  409,
+    CV_ARM64_Z28    =  410,
+    CV_ARM64_Z29    =  411,
+    CV_ARM64_Z30    =  412,
+    CV_ARM64_Z31    =  413,
+
+    CV_ARM64_P0     =  414,
+    CV_ARM64_P1     =  415,
+    CV_ARM64_P2     =  416,
+    CV_ARM64_P3     =  417,
+    CV_ARM64_P4     =  418,
+    CV_ARM64_P5     =  419,
+    CV_ARM64_P6     =  420,
+    CV_ARM64_P7     =  421,
+    CV_ARM64_P8     =  422,
+    CV_ARM64_P9     =  423,
+    CV_ARM64_P10    =  424,
+    CV_ARM64_P11    =  425,
+    CV_ARM64_P12    =  426,
+    CV_ARM64_P13    =  427,
+    CV_ARM64_P14    =  428,
+    CV_ARM64_P15    =  429,
+
+    // SVE first-fault status register
+    CV_ARM64_FFR    =  430,
 
     //
     // Register set for Intel IA64

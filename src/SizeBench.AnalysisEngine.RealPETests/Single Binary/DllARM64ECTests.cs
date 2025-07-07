@@ -1,6 +1,6 @@
-using System.IO;
+﻿using System.IO;
 using SizeBench.AnalysisEngine;
-using SizeBench.AnalysisEngine.RealPETests.Single_Binary;
+using SizeBench.AnalysisEngine.PE;
 using SizeBench.AnalysisEngine.Symbols;
 using SizeBench.Logging;
 

@@ -190,6 +190,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SizeBenchV2.AnalysisEngine.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SizeBenchV2.AnalysisEngine.Tests.InlineSites", "TestPEProjects\SizeBenchV2.AnalysisEngine.Tests.InlineSites\SizeBenchV2.AnalysisEngine.Tests.InlineSites.vcxproj", "{1758B4E2-9D50-4257-9ABD-5838A768575E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PEParser.Tests.DllARM64EC", "TestPEProjects\PEParser.Tests.DllARM64EC\PEParser.Tests.DllARM64EC.vcxproj", "{A641EC74-3CCE-4BAA-969F-689B9F107662}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -322,6 +324,10 @@ Global
 		{F5A769AB-AA4A-419B-BD04-E15C5B3F61A2}.Release|x64.ActiveCfg = Debug|x64
 		{1758B4E2-9D50-4257-9ABD-5838A768575E}.Debug|x64.ActiveCfg = Debug|x64
 		{1758B4E2-9D50-4257-9ABD-5838A768575E}.Release|x64.ActiveCfg = Debug|x64
+		{A641EC74-3CCE-4BAA-969F-689B9F107662}.Debug|x64.ActiveCfg = Debug|ARM64EC
+		{A641EC74-3CCE-4BAA-969F-689B9F107662}.Debug|x64.Build.0 = Debug|ARM64EC
+		{A641EC74-3CCE-4BAA-969F-689B9F107662}.Release|x64.ActiveCfg = Debug|ARM64EC
+		{A641EC74-3CCE-4BAA-969F-689B9F107662}.Release|x64.Build.0 = Debug|ARM64EC
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -375,6 +381,7 @@ Global
 		{F3B85B36-DE41-48CC-84E5-D7FC9D1CE28D} = {DCE07710-61B5-4730-BF3D-1488D637807D}
 		{F5A769AB-AA4A-419B-BD04-E15C5B3F61A2} = {DCE07710-61B5-4730-BF3D-1488D637807D}
 		{1758B4E2-9D50-4257-9ABD-5838A768575E} = {DCE07710-61B5-4730-BF3D-1488D637807D}
+		{A641EC74-3CCE-4BAA-969F-689B9F107662} = {DCE07710-61B5-4730-BF3D-1488D637807D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {936F9790-BC54-416C-9C26-BB58BA16D33E}

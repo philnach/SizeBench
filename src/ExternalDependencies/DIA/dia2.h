@@ -3,11 +3,11 @@
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
 
 
- /* File created by MIDL compiler version 8.01.0626 */
+ /* File created by MIDL compiler version 8.01.0628 */
 /* at Mon Jan 18 19:14:07 2038
  */
 /* Compiler settings for dia2.idl:
-    Oicf, W1, Zp8, env=Win64 (32b run), target_arch=AMD64 8.01.0626 
+    Oicf, W1, Zp8, env=Win64 (32b run), target_arch=AMD64 8.01.0628 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
     VC __declspec() decoration level: 
@@ -44,7 +44,7 @@
 #endif
 
 #ifndef DECLSPEC_XFGVIRT
-#if _CONTROL_FLOW_GUARD_XFG
+#if defined(_CONTROL_FLOW_GUARD_XFG)
 #define DECLSPEC_XFGVIRT(base, func) __declspec(xfg_virtual(base, func))
 #else
 #define DECLSPEC_XFGVIRT(base, func)
@@ -86,6 +86,20 @@ typedef interface IDiaReadExeAtRVACallback IDiaReadExeAtRVACallback;
 typedef interface IDiaDataSource IDiaDataSource;
 
 #endif 	/* __IDiaDataSource_FWD_DEFINED__ */
+
+
+#ifndef __IDiaDataSourceEx_FWD_DEFINED__
+#define __IDiaDataSourceEx_FWD_DEFINED__
+typedef interface IDiaDataSourceEx IDiaDataSourceEx;
+
+#endif 	/* __IDiaDataSourceEx_FWD_DEFINED__ */
+
+
+#ifndef __IDiaDataSourceEx2_FWD_DEFINED__
+#define __IDiaDataSourceEx2_FWD_DEFINED__
+typedef interface IDiaDataSourceEx2 IDiaDataSourceEx2;
+
+#endif 	/* __IDiaDataSourceEx2_FWD_DEFINED__ */
 
 
 #ifndef __IDiaEnumSymbols_FWD_DEFINED__
@@ -184,6 +198,13 @@ typedef interface IDiaAddressMap IDiaAddressMap;
 typedef interface IDiaSession IDiaSession;
 
 #endif 	/* __IDiaSession_FWD_DEFINED__ */
+
+
+#ifndef __IDiaSessionEx_FWD_DEFINED__
+#define __IDiaSessionEx_FWD_DEFINED__
+typedef interface IDiaSessionEx IDiaSessionEx;
+
+#endif 	/* __IDiaSessionEx_FWD_DEFINED__ */
 
 
 #ifndef __IDiaSymbol_FWD_DEFINED__
@@ -338,6 +359,20 @@ typedef interface IDiaTable IDiaTable;
 typedef interface IDiaEnumTables IDiaEnumTables;
 
 #endif 	/* __IDiaEnumTables_FWD_DEFINED__ */
+
+
+#ifndef __IDiaEnumSourceLink_FWD_DEFINED__
+#define __IDiaEnumSourceLink_FWD_DEFINED__
+typedef interface IDiaEnumSourceLink IDiaEnumSourceLink;
+
+#endif 	/* __IDiaEnumSourceLink_FWD_DEFINED__ */
+
+
+#ifndef __IDiaEnumSourceLink2_FWD_DEFINED__
+#define __IDiaEnumSourceLink2_FWD_DEFINED__
+typedef interface IDiaEnumSourceLink2 IDiaEnumSourceLink2;
+
+#endif 	/* __IDiaEnumSourceLink2_FWD_DEFINED__ */
 
 
 #ifndef __DiaSource_FWD_DEFINED__
@@ -530,6 +565,13 @@ typedef interface IDiaStackWalker2 IDiaStackWalker2;
 #endif 	/* __IDiaStackWalker2_FWD_DEFINED__ */
 
 
+#ifndef __IDiaEnumNamedStreams_FWD_DEFINED__
+#define __IDiaEnumNamedStreams_FWD_DEFINED__
+typedef interface IDiaEnumNamedStreams IDiaEnumNamedStreams;
+
+#endif 	/* __IDiaEnumNamedStreams_FWD_DEFINED__ */
+
+
 /* header files for imported files */
 #include "objidl.h"
 #include "oaidl.h"
@@ -588,11 +630,26 @@ enum __MIDL___MIDL_itf_dia2_0000_0000_0001
         E_PDB_SYMSRV_BAD_CACHE_PATH	= ( E_PDB_DEBUG_INFO_NOT_IN_PDB + 1 ) ,
         E_PDB_SYMSRV_CACHE_FULL	= ( E_PDB_SYMSRV_BAD_CACHE_PATH + 1 ) ,
         E_PDB_OBJECT_DISPOSED	= ( E_PDB_SYMSRV_CACHE_FULL + 1 ) ,
-        E_PDB_MAX	= ( E_PDB_OBJECT_DISPOSED + 1 ) 
+        E_PDB_MAX	= ( E_PDB_OBJECT_DISPOSED + 1 ) ,
+        E_PDB_IFC_RECORD_MISSING_DESIGNATOR	= ( E_PDB_MAX + 1 ) ,
+        E_PDB_IFC_RECORD_MISSING_REFERENCE	= ( E_PDB_IFC_RECORD_MISSING_DESIGNATOR + 1 ) ,
+        E_PDB_IFC_FAILED_TO_LOAD	= ( E_PDB_IFC_RECORD_MISSING_REFERENCE + 1 ) ,
+        E_PDB_IFC_FAILED_TO_LOAD_MISMATCH_HASH	= ( E_PDB_IFC_FAILED_TO_LOAD + 1 ) ,
+        E_PDB_IFC_DEBUG_STREAM_FAILED_OPEN	= ( E_PDB_IFC_FAILED_TO_LOAD_MISMATCH_HASH + 1 ) ,
+        E_PDB_IFC_DEBUG_STREAM_EMPTY	= ( E_PDB_IFC_DEBUG_STREAM_FAILED_OPEN + 1 ) ,
+        E_PDB_IFC_DEBUG_STREAM_HASH_MISMATCH	= ( E_PDB_IFC_DEBUG_STREAM_EMPTY + 1 ) ,
+        E_DIA_INPROLOG	= ( HRESULT  )(( ( ( ( unsigned long  )1 << 31 )  | ( ( unsigned long  )( LONG  )0x6d << 16 )  )  | ( unsigned long  )100 ) ),
+        E_DIA_SYNTAX	= ( E_DIA_INPROLOG + 1 ) ,
+        E_DIA_FRAME_ACCESS	= ( E_DIA_SYNTAX + 1 ) ,
+        E_DIA_VALUE	= ( E_DIA_FRAME_ACCESS + 1 ) ,
+        E_DIA_COFF_ACCESS	= ( DWORD  )(( ( ( ( DWORD  )1 << 31 )  | ( ( DWORD  )( LONG  )0x6d << 16 )  )  | ( DWORD  )200 ) ),
+        E_DIA_COMP_PDB_ACCESS	= ( E_DIA_COFF_ACCESS + 1 ) 
     } ;
 typedef void ( __cdecl *PfnPDBDebugDirV )( 
     BOOL __MIDL____MIDL_itf_dia2_0000_00000000,
     void *__MIDL____MIDL_itf_dia2_0000_00000001);
+
+
 
 
 
@@ -1271,6 +1328,553 @@ EXTERN_C const IID IID_IDiaDataSource;
 
 
 #endif 	/* __IDiaDataSource_INTERFACE_DEFINED__ */
+
+
+/* interface __MIDL_itf_dia2_0000_0005 */
+/* [local] */ 
+
+typedef HRESULT ( __cdecl *PFNMINIPDBERRORCALLBACK2 )( 
+    void *pvContext,
+    DWORD dwErrorCode,
+    const LPCOLESTR szObjOrPdb,
+    const LPCOLESTR szLib);
+
+
+
+extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0005_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0005_v0_0_s_ifspec;
+
+#ifndef __IDiaDataSourceEx_INTERFACE_DEFINED__
+#define __IDiaDataSourceEx_INTERFACE_DEFINED__
+
+/* interface IDiaDataSourceEx */
+/* [unique][helpstring][local][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IDiaDataSourceEx;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("1a21eb69-962a-4bc4-8bd3-681797d38b23")
+    IDiaDataSourceEx : public IDiaDataSource
+    {
+    public:
+        virtual HRESULT STDMETHODCALLTYPE loadDataFromPdbEx( 
+            /* [in] */ LPCOLESTR pdbPath,
+            /* [in] */ BOOL fPdbPrefetching) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE loadAndValidateDataFromPdbEx( 
+            /* [in] */ LPCOLESTR pdbPath,
+            /* [in] */ GUID *pcsig70,
+            /* [in] */ DWORD sig,
+            /* [in] */ DWORD age,
+            /* [in] */ BOOL fPdbPrefetching) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE loadDataForExeEx( 
+            /* [in] */ LPCOLESTR executable,
+            /* [in] */ LPCOLESTR searchPath,
+            /* [in] */ IUnknown *pCallback,
+            /* [in] */ BOOL fPdbPrefetching) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE loadDataFromIStreamEx( 
+            /* [in] */ IStream *pIStream,
+            /* [in] */ BOOL fPdbPrefetching) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE getStreamSize( 
+            /* [in] */ LPCOLESTR stream,
+            /* [out] */ ULONGLONG *pcb) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE getStreamRawData( 
+            /* [in] */ LPCOLESTR stream,
+            /* [in] */ ULONGLONG cbOffset,
+            /* [in] */ ULONGLONG cbRead,
+            /* [out] */ ULONGLONG *pcbRead,
+            /* [size_is][out] */ BYTE *pbData) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE setPfnMiniPDBErrorCallback2( 
+            /* [in] */ void *pvContext,
+            /* [in] */ PFNMINIPDBERRORCALLBACK2 pfn) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE ValidatePdb( 
+            /* [in] */ LPCOLESTR pdbPath,
+            /* [in] */ const GUID *pcsig70,
+            /* [in] */ DWORD sig,
+            /* [in] */ DWORD age,
+            /* [out] */ BOOL *pfStripped) = 0;
+        
+    };
+    
+    
+#else 	/* C style interface */
+
+    typedef struct IDiaDataSourceExVtbl
+    {
+        BEGIN_INTERFACE
+        
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
+        HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ REFIID riid,
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
+        
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
+        ULONG ( STDMETHODCALLTYPE *AddRef )( 
+            IDiaDataSourceEx * This);
+        
+        DECLSPEC_XFGVIRT(IUnknown, Release)
+        ULONG ( STDMETHODCALLTYPE *Release )( 
+            IDiaDataSourceEx * This);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, get_lastError)
+        /* [id][helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_lastError )( 
+            IDiaDataSourceEx * This,
+            /* [retval][out] */ BSTR *pRetVal);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, loadDataFromPdb)
+        HRESULT ( STDMETHODCALLTYPE *loadDataFromPdb )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ LPCOLESTR pdbPath);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, loadAndValidateDataFromPdb)
+        HRESULT ( STDMETHODCALLTYPE *loadAndValidateDataFromPdb )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ LPCOLESTR pdbPath,
+            /* [in] */ GUID *pcsig70,
+            /* [in] */ DWORD sig,
+            /* [in] */ DWORD age);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, loadDataForExe)
+        HRESULT ( STDMETHODCALLTYPE *loadDataForExe )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ LPCOLESTR executable,
+            /* [in] */ LPCOLESTR searchPath,
+            /* [in] */ IUnknown *pCallback);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, loadDataFromIStream)
+        HRESULT ( STDMETHODCALLTYPE *loadDataFromIStream )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ IStream *pIStream);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, openSession)
+        HRESULT ( STDMETHODCALLTYPE *openSession )( 
+            IDiaDataSourceEx * This,
+            /* [out] */ IDiaSession **ppSession);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, loadDataFromCodeViewInfo)
+        HRESULT ( STDMETHODCALLTYPE *loadDataFromCodeViewInfo )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ LPCOLESTR executable,
+            /* [in] */ LPCOLESTR searchPath,
+            /* [in] */ DWORD cbCvInfo,
+            /* [size_is][in] */ BYTE *pbCvInfo,
+            /* [in] */ IUnknown *pCallback);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, loadDataFromMiscInfo)
+        HRESULT ( STDMETHODCALLTYPE *loadDataFromMiscInfo )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ LPCOLESTR executable,
+            /* [in] */ LPCOLESTR searchPath,
+            /* [in] */ DWORD timeStampExe,
+            /* [in] */ DWORD timeStampDbg,
+            /* [in] */ DWORD sizeOfExe,
+            /* [in] */ DWORD cbMiscInfo,
+            /* [size_is][in] */ BYTE *pbMiscInfo,
+            /* [in] */ IUnknown *pCallback);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, loadDataFromPdbEx)
+        HRESULT ( STDMETHODCALLTYPE *loadDataFromPdbEx )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ LPCOLESTR pdbPath,
+            /* [in] */ BOOL fPdbPrefetching);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, loadAndValidateDataFromPdbEx)
+        HRESULT ( STDMETHODCALLTYPE *loadAndValidateDataFromPdbEx )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ LPCOLESTR pdbPath,
+            /* [in] */ GUID *pcsig70,
+            /* [in] */ DWORD sig,
+            /* [in] */ DWORD age,
+            /* [in] */ BOOL fPdbPrefetching);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, loadDataForExeEx)
+        HRESULT ( STDMETHODCALLTYPE *loadDataForExeEx )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ LPCOLESTR executable,
+            /* [in] */ LPCOLESTR searchPath,
+            /* [in] */ IUnknown *pCallback,
+            /* [in] */ BOOL fPdbPrefetching);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, loadDataFromIStreamEx)
+        HRESULT ( STDMETHODCALLTYPE *loadDataFromIStreamEx )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ IStream *pIStream,
+            /* [in] */ BOOL fPdbPrefetching);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, getStreamSize)
+        HRESULT ( STDMETHODCALLTYPE *getStreamSize )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ LPCOLESTR stream,
+            /* [out] */ ULONGLONG *pcb);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, getStreamRawData)
+        HRESULT ( STDMETHODCALLTYPE *getStreamRawData )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ LPCOLESTR stream,
+            /* [in] */ ULONGLONG cbOffset,
+            /* [in] */ ULONGLONG cbRead,
+            /* [out] */ ULONGLONG *pcbRead,
+            /* [size_is][out] */ BYTE *pbData);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, setPfnMiniPDBErrorCallback2)
+        HRESULT ( STDMETHODCALLTYPE *setPfnMiniPDBErrorCallback2 )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ void *pvContext,
+            /* [in] */ PFNMINIPDBERRORCALLBACK2 pfn);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, ValidatePdb)
+        HRESULT ( STDMETHODCALLTYPE *ValidatePdb )( 
+            IDiaDataSourceEx * This,
+            /* [in] */ LPCOLESTR pdbPath,
+            /* [in] */ const GUID *pcsig70,
+            /* [in] */ DWORD sig,
+            /* [in] */ DWORD age,
+            /* [out] */ BOOL *pfStripped);
+        
+        END_INTERFACE
+    } IDiaDataSourceExVtbl;
+
+    interface IDiaDataSourceEx
+    {
+        CONST_VTBL struct IDiaDataSourceExVtbl *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IDiaDataSourceEx_QueryInterface(This,riid,ppvObject)	\
+    ( (This)->lpVtbl -> QueryInterface(This,riid,ppvObject) ) 
+
+#define IDiaDataSourceEx_AddRef(This)	\
+    ( (This)->lpVtbl -> AddRef(This) ) 
+
+#define IDiaDataSourceEx_Release(This)	\
+    ( (This)->lpVtbl -> Release(This) ) 
+
+
+#define IDiaDataSourceEx_get_lastError(This,pRetVal)	\
+    ( (This)->lpVtbl -> get_lastError(This,pRetVal) ) 
+
+#define IDiaDataSourceEx_loadDataFromPdb(This,pdbPath)	\
+    ( (This)->lpVtbl -> loadDataFromPdb(This,pdbPath) ) 
+
+#define IDiaDataSourceEx_loadAndValidateDataFromPdb(This,pdbPath,pcsig70,sig,age)	\
+    ( (This)->lpVtbl -> loadAndValidateDataFromPdb(This,pdbPath,pcsig70,sig,age) ) 
+
+#define IDiaDataSourceEx_loadDataForExe(This,executable,searchPath,pCallback)	\
+    ( (This)->lpVtbl -> loadDataForExe(This,executable,searchPath,pCallback) ) 
+
+#define IDiaDataSourceEx_loadDataFromIStream(This,pIStream)	\
+    ( (This)->lpVtbl -> loadDataFromIStream(This,pIStream) ) 
+
+#define IDiaDataSourceEx_openSession(This,ppSession)	\
+    ( (This)->lpVtbl -> openSession(This,ppSession) ) 
+
+#define IDiaDataSourceEx_loadDataFromCodeViewInfo(This,executable,searchPath,cbCvInfo,pbCvInfo,pCallback)	\
+    ( (This)->lpVtbl -> loadDataFromCodeViewInfo(This,executable,searchPath,cbCvInfo,pbCvInfo,pCallback) ) 
+
+#define IDiaDataSourceEx_loadDataFromMiscInfo(This,executable,searchPath,timeStampExe,timeStampDbg,sizeOfExe,cbMiscInfo,pbMiscInfo,pCallback)	\
+    ( (This)->lpVtbl -> loadDataFromMiscInfo(This,executable,searchPath,timeStampExe,timeStampDbg,sizeOfExe,cbMiscInfo,pbMiscInfo,pCallback) ) 
+
+
+#define IDiaDataSourceEx_loadDataFromPdbEx(This,pdbPath,fPdbPrefetching)	\
+    ( (This)->lpVtbl -> loadDataFromPdbEx(This,pdbPath,fPdbPrefetching) ) 
+
+#define IDiaDataSourceEx_loadAndValidateDataFromPdbEx(This,pdbPath,pcsig70,sig,age,fPdbPrefetching)	\
+    ( (This)->lpVtbl -> loadAndValidateDataFromPdbEx(This,pdbPath,pcsig70,sig,age,fPdbPrefetching) ) 
+
+#define IDiaDataSourceEx_loadDataForExeEx(This,executable,searchPath,pCallback,fPdbPrefetching)	\
+    ( (This)->lpVtbl -> loadDataForExeEx(This,executable,searchPath,pCallback,fPdbPrefetching) ) 
+
+#define IDiaDataSourceEx_loadDataFromIStreamEx(This,pIStream,fPdbPrefetching)	\
+    ( (This)->lpVtbl -> loadDataFromIStreamEx(This,pIStream,fPdbPrefetching) ) 
+
+#define IDiaDataSourceEx_getStreamSize(This,stream,pcb)	\
+    ( (This)->lpVtbl -> getStreamSize(This,stream,pcb) ) 
+
+#define IDiaDataSourceEx_getStreamRawData(This,stream,cbOffset,cbRead,pcbRead,pbData)	\
+    ( (This)->lpVtbl -> getStreamRawData(This,stream,cbOffset,cbRead,pcbRead,pbData) ) 
+
+#define IDiaDataSourceEx_setPfnMiniPDBErrorCallback2(This,pvContext,pfn)	\
+    ( (This)->lpVtbl -> setPfnMiniPDBErrorCallback2(This,pvContext,pfn) ) 
+
+#define IDiaDataSourceEx_ValidatePdb(This,pdbPath,pcsig70,sig,age,pfStripped)	\
+    ( (This)->lpVtbl -> ValidatePdb(This,pdbPath,pcsig70,sig,age,pfStripped) ) 
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+
+#endif 	/* __IDiaDataSourceEx_INTERFACE_DEFINED__ */
+
+
+#ifndef __IDiaDataSourceEx2_INTERFACE_DEFINED__
+#define __IDiaDataSourceEx2_INTERFACE_DEFINED__
+
+/* interface IDiaDataSourceEx2 */
+/* [unique][helpstring][local][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IDiaDataSourceEx2;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("D240C8DD-1A0F-456E-80A6-4F1D06BF5DF4")
+    IDiaDataSourceEx2 : public IDiaDataSourceEx
+    {
+    public:
+        virtual HRESULT STDMETHODCALLTYPE findNamedStreams( 
+            /* [in] */ LPCOLESTR name,
+            /* [in] */ DWORD compareFlags,
+            /* [out] */ IDiaEnumNamedStreams **ppResult) = 0;
+        
+    };
+    
+    
+#else 	/* C style interface */
+
+    typedef struct IDiaDataSourceEx2Vtbl
+    {
+        BEGIN_INTERFACE
+        
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
+        HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ REFIID riid,
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
+        
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
+        ULONG ( STDMETHODCALLTYPE *AddRef )( 
+            IDiaDataSourceEx2 * This);
+        
+        DECLSPEC_XFGVIRT(IUnknown, Release)
+        ULONG ( STDMETHODCALLTYPE *Release )( 
+            IDiaDataSourceEx2 * This);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, get_lastError)
+        /* [id][helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_lastError )( 
+            IDiaDataSourceEx2 * This,
+            /* [retval][out] */ BSTR *pRetVal);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, loadDataFromPdb)
+        HRESULT ( STDMETHODCALLTYPE *loadDataFromPdb )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ LPCOLESTR pdbPath);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, loadAndValidateDataFromPdb)
+        HRESULT ( STDMETHODCALLTYPE *loadAndValidateDataFromPdb )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ LPCOLESTR pdbPath,
+            /* [in] */ GUID *pcsig70,
+            /* [in] */ DWORD sig,
+            /* [in] */ DWORD age);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, loadDataForExe)
+        HRESULT ( STDMETHODCALLTYPE *loadDataForExe )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ LPCOLESTR executable,
+            /* [in] */ LPCOLESTR searchPath,
+            /* [in] */ IUnknown *pCallback);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, loadDataFromIStream)
+        HRESULT ( STDMETHODCALLTYPE *loadDataFromIStream )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ IStream *pIStream);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, openSession)
+        HRESULT ( STDMETHODCALLTYPE *openSession )( 
+            IDiaDataSourceEx2 * This,
+            /* [out] */ IDiaSession **ppSession);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, loadDataFromCodeViewInfo)
+        HRESULT ( STDMETHODCALLTYPE *loadDataFromCodeViewInfo )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ LPCOLESTR executable,
+            /* [in] */ LPCOLESTR searchPath,
+            /* [in] */ DWORD cbCvInfo,
+            /* [size_is][in] */ BYTE *pbCvInfo,
+            /* [in] */ IUnknown *pCallback);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSource, loadDataFromMiscInfo)
+        HRESULT ( STDMETHODCALLTYPE *loadDataFromMiscInfo )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ LPCOLESTR executable,
+            /* [in] */ LPCOLESTR searchPath,
+            /* [in] */ DWORD timeStampExe,
+            /* [in] */ DWORD timeStampDbg,
+            /* [in] */ DWORD sizeOfExe,
+            /* [in] */ DWORD cbMiscInfo,
+            /* [size_is][in] */ BYTE *pbMiscInfo,
+            /* [in] */ IUnknown *pCallback);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, loadDataFromPdbEx)
+        HRESULT ( STDMETHODCALLTYPE *loadDataFromPdbEx )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ LPCOLESTR pdbPath,
+            /* [in] */ BOOL fPdbPrefetching);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, loadAndValidateDataFromPdbEx)
+        HRESULT ( STDMETHODCALLTYPE *loadAndValidateDataFromPdbEx )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ LPCOLESTR pdbPath,
+            /* [in] */ GUID *pcsig70,
+            /* [in] */ DWORD sig,
+            /* [in] */ DWORD age,
+            /* [in] */ BOOL fPdbPrefetching);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, loadDataForExeEx)
+        HRESULT ( STDMETHODCALLTYPE *loadDataForExeEx )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ LPCOLESTR executable,
+            /* [in] */ LPCOLESTR searchPath,
+            /* [in] */ IUnknown *pCallback,
+            /* [in] */ BOOL fPdbPrefetching);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, loadDataFromIStreamEx)
+        HRESULT ( STDMETHODCALLTYPE *loadDataFromIStreamEx )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ IStream *pIStream,
+            /* [in] */ BOOL fPdbPrefetching);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, getStreamSize)
+        HRESULT ( STDMETHODCALLTYPE *getStreamSize )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ LPCOLESTR stream,
+            /* [out] */ ULONGLONG *pcb);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, getStreamRawData)
+        HRESULT ( STDMETHODCALLTYPE *getStreamRawData )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ LPCOLESTR stream,
+            /* [in] */ ULONGLONG cbOffset,
+            /* [in] */ ULONGLONG cbRead,
+            /* [out] */ ULONGLONG *pcbRead,
+            /* [size_is][out] */ BYTE *pbData);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, setPfnMiniPDBErrorCallback2)
+        HRESULT ( STDMETHODCALLTYPE *setPfnMiniPDBErrorCallback2 )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ void *pvContext,
+            /* [in] */ PFNMINIPDBERRORCALLBACK2 pfn);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx, ValidatePdb)
+        HRESULT ( STDMETHODCALLTYPE *ValidatePdb )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ LPCOLESTR pdbPath,
+            /* [in] */ const GUID *pcsig70,
+            /* [in] */ DWORD sig,
+            /* [in] */ DWORD age,
+            /* [out] */ BOOL *pfStripped);
+        
+        DECLSPEC_XFGVIRT(IDiaDataSourceEx2, findNamedStreams)
+        HRESULT ( STDMETHODCALLTYPE *findNamedStreams )( 
+            IDiaDataSourceEx2 * This,
+            /* [in] */ LPCOLESTR name,
+            /* [in] */ DWORD compareFlags,
+            /* [out] */ IDiaEnumNamedStreams **ppResult);
+        
+        END_INTERFACE
+    } IDiaDataSourceEx2Vtbl;
+
+    interface IDiaDataSourceEx2
+    {
+        CONST_VTBL struct IDiaDataSourceEx2Vtbl *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IDiaDataSourceEx2_QueryInterface(This,riid,ppvObject)	\
+    ( (This)->lpVtbl -> QueryInterface(This,riid,ppvObject) ) 
+
+#define IDiaDataSourceEx2_AddRef(This)	\
+    ( (This)->lpVtbl -> AddRef(This) ) 
+
+#define IDiaDataSourceEx2_Release(This)	\
+    ( (This)->lpVtbl -> Release(This) ) 
+
+
+#define IDiaDataSourceEx2_get_lastError(This,pRetVal)	\
+    ( (This)->lpVtbl -> get_lastError(This,pRetVal) ) 
+
+#define IDiaDataSourceEx2_loadDataFromPdb(This,pdbPath)	\
+    ( (This)->lpVtbl -> loadDataFromPdb(This,pdbPath) ) 
+
+#define IDiaDataSourceEx2_loadAndValidateDataFromPdb(This,pdbPath,pcsig70,sig,age)	\
+    ( (This)->lpVtbl -> loadAndValidateDataFromPdb(This,pdbPath,pcsig70,sig,age) ) 
+
+#define IDiaDataSourceEx2_loadDataForExe(This,executable,searchPath,pCallback)	\
+    ( (This)->lpVtbl -> loadDataForExe(This,executable,searchPath,pCallback) ) 
+
+#define IDiaDataSourceEx2_loadDataFromIStream(This,pIStream)	\
+    ( (This)->lpVtbl -> loadDataFromIStream(This,pIStream) ) 
+
+#define IDiaDataSourceEx2_openSession(This,ppSession)	\
+    ( (This)->lpVtbl -> openSession(This,ppSession) ) 
+
+#define IDiaDataSourceEx2_loadDataFromCodeViewInfo(This,executable,searchPath,cbCvInfo,pbCvInfo,pCallback)	\
+    ( (This)->lpVtbl -> loadDataFromCodeViewInfo(This,executable,searchPath,cbCvInfo,pbCvInfo,pCallback) ) 
+
+#define IDiaDataSourceEx2_loadDataFromMiscInfo(This,executable,searchPath,timeStampExe,timeStampDbg,sizeOfExe,cbMiscInfo,pbMiscInfo,pCallback)	\
+    ( (This)->lpVtbl -> loadDataFromMiscInfo(This,executable,searchPath,timeStampExe,timeStampDbg,sizeOfExe,cbMiscInfo,pbMiscInfo,pCallback) ) 
+
+
+#define IDiaDataSourceEx2_loadDataFromPdbEx(This,pdbPath,fPdbPrefetching)	\
+    ( (This)->lpVtbl -> loadDataFromPdbEx(This,pdbPath,fPdbPrefetching) ) 
+
+#define IDiaDataSourceEx2_loadAndValidateDataFromPdbEx(This,pdbPath,pcsig70,sig,age,fPdbPrefetching)	\
+    ( (This)->lpVtbl -> loadAndValidateDataFromPdbEx(This,pdbPath,pcsig70,sig,age,fPdbPrefetching) ) 
+
+#define IDiaDataSourceEx2_loadDataForExeEx(This,executable,searchPath,pCallback,fPdbPrefetching)	\
+    ( (This)->lpVtbl -> loadDataForExeEx(This,executable,searchPath,pCallback,fPdbPrefetching) ) 
+
+#define IDiaDataSourceEx2_loadDataFromIStreamEx(This,pIStream,fPdbPrefetching)	\
+    ( (This)->lpVtbl -> loadDataFromIStreamEx(This,pIStream,fPdbPrefetching) ) 
+
+#define IDiaDataSourceEx2_getStreamSize(This,stream,pcb)	\
+    ( (This)->lpVtbl -> getStreamSize(This,stream,pcb) ) 
+
+#define IDiaDataSourceEx2_getStreamRawData(This,stream,cbOffset,cbRead,pcbRead,pbData)	\
+    ( (This)->lpVtbl -> getStreamRawData(This,stream,cbOffset,cbRead,pcbRead,pbData) ) 
+
+#define IDiaDataSourceEx2_setPfnMiniPDBErrorCallback2(This,pvContext,pfn)	\
+    ( (This)->lpVtbl -> setPfnMiniPDBErrorCallback2(This,pvContext,pfn) ) 
+
+#define IDiaDataSourceEx2_ValidatePdb(This,pdbPath,pcsig70,sig,age,pfStripped)	\
+    ( (This)->lpVtbl -> ValidatePdb(This,pdbPath,pcsig70,sig,age,pfStripped) ) 
+
+
+#define IDiaDataSourceEx2_findNamedStreams(This,name,compareFlags,ppResult)	\
+    ( (This)->lpVtbl -> findNamedStreams(This,name,compareFlags,ppResult) ) 
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+
+#endif 	/* __IDiaDataSourceEx2_INTERFACE_DEFINED__ */
 
 
 #ifndef __IDiaEnumSymbols_INTERFACE_DEFINED__
@@ -3224,7 +3828,7 @@ EXTERN_C const IID IID_IDiaEnumDebugStreams;
 #endif 	/* __IDiaEnumDebugStreams_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_dia2_0000_0017 */
+/* interface __MIDL_itf_dia2_0000_0019 */
 /* [local] */ 
 
 struct DiaAddressMapEntry
@@ -3234,8 +3838,8 @@ struct DiaAddressMapEntry
     } ;
 
 
-extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0017_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0017_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0019_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0019_v0_0_s_ifspec;
 
 #ifndef __IDiaAddressMap_INTERFACE_DEFINED__
 #define __IDiaAddressMap_INTERFACE_DEFINED__
@@ -4374,6 +4978,711 @@ EXTERN_C const IID IID_IDiaSession;
 
 
 #endif 	/* __IDiaSession_INTERFACE_DEFINED__ */
+
+
+#ifndef __IDiaSessionEx_INTERFACE_DEFINED__
+#define __IDiaSessionEx_INTERFACE_DEFINED__
+
+/* interface IDiaSessionEx */
+/* [unique][helpstring][local][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IDiaSessionEx;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("cd24eed5-5fea-4742-a320-6254c920e78b")
+    IDiaSessionEx : public IDiaSession
+    {
+    public:
+        virtual HRESULT STDMETHODCALLTYPE isFastLinkPDB( 
+            /* [out] */ BOOL *pfFastLinkPDB) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE isPortablePDB( 
+            /* [out] */ BOOL *pfPortablePDB) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE getSourceLinkInfo( 
+            /* [in] */ IDiaSymbol *parent,
+            /* [out] */ IDiaEnumSourceLink **ppenum) = 0;
+        
+    };
+    
+    
+#else 	/* C style interface */
+
+    typedef struct IDiaSessionExVtbl
+    {
+        BEGIN_INTERFACE
+        
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
+        HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
+            IDiaSessionEx * This,
+            /* [in] */ REFIID riid,
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
+        
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
+        ULONG ( STDMETHODCALLTYPE *AddRef )( 
+            IDiaSessionEx * This);
+        
+        DECLSPEC_XFGVIRT(IUnknown, Release)
+        ULONG ( STDMETHODCALLTYPE *Release )( 
+            IDiaSessionEx * This);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, get_loadAddress)
+        /* [id][helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_loadAddress )( 
+            IDiaSessionEx * This,
+            /* [retval][out] */ ULONGLONG *pRetVal);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, put_loadAddress)
+        /* [id][helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE *put_loadAddress )( 
+            IDiaSessionEx * This,
+            /* [in] */ ULONGLONG NewVal);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, get_globalScope)
+        /* [id][helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_globalScope )( 
+            IDiaSessionEx * This,
+            /* [retval][out] */ IDiaSymbol **pRetVal);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, getEnumTables)
+        HRESULT ( STDMETHODCALLTYPE *getEnumTables )( 
+            IDiaSessionEx * This,
+            /* [out] */ IDiaEnumTables **ppEnumTables);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, getSymbolsByAddr)
+        HRESULT ( STDMETHODCALLTYPE *getSymbolsByAddr )( 
+            IDiaSessionEx * This,
+            /* [out] */ IDiaEnumSymbolsByAddr **ppEnumbyAddr);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findChildren)
+        HRESULT ( STDMETHODCALLTYPE *findChildren )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [in] */ enum SymTagEnum symtag,
+            /* [in] */ LPCOLESTR name,
+            /* [in] */ DWORD compareFlags,
+            /* [out] */ IDiaEnumSymbols **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findChildrenEx)
+        HRESULT ( STDMETHODCALLTYPE *findChildrenEx )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [in] */ enum SymTagEnum symtag,
+            /* [in] */ LPCOLESTR name,
+            /* [in] */ DWORD compareFlags,
+            /* [out] */ IDiaEnumSymbols **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findChildrenExByAddr)
+        HRESULT ( STDMETHODCALLTYPE *findChildrenExByAddr )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [in] */ enum SymTagEnum symtag,
+            /* [in] */ LPCOLESTR name,
+            /* [in] */ DWORD compareFlags,
+            /* [in] */ DWORD isect,
+            /* [in] */ DWORD offset,
+            /* [out] */ IDiaEnumSymbols **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findChildrenExByVA)
+        HRESULT ( STDMETHODCALLTYPE *findChildrenExByVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [in] */ enum SymTagEnum symtag,
+            /* [in] */ LPCOLESTR name,
+            /* [in] */ DWORD compareFlags,
+            /* [in] */ ULONGLONG va,
+            /* [out] */ IDiaEnumSymbols **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findChildrenExByRVA)
+        HRESULT ( STDMETHODCALLTYPE *findChildrenExByRVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [in] */ enum SymTagEnum symtag,
+            /* [in] */ LPCOLESTR name,
+            /* [in] */ DWORD compareFlags,
+            /* [in] */ DWORD rva,
+            /* [out] */ IDiaEnumSymbols **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findSymbolByAddr)
+        HRESULT ( STDMETHODCALLTYPE *findSymbolByAddr )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD isect,
+            /* [in] */ DWORD offset,
+            /* [in] */ enum SymTagEnum symtag,
+            /* [out] */ IDiaSymbol **ppSymbol);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findSymbolByRVA)
+        HRESULT ( STDMETHODCALLTYPE *findSymbolByRVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD rva,
+            /* [in] */ enum SymTagEnum symtag,
+            /* [out] */ IDiaSymbol **ppSymbol);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findSymbolByVA)
+        HRESULT ( STDMETHODCALLTYPE *findSymbolByVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ ULONGLONG va,
+            /* [in] */ enum SymTagEnum symtag,
+            /* [out] */ IDiaSymbol **ppSymbol);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findSymbolByToken)
+        HRESULT ( STDMETHODCALLTYPE *findSymbolByToken )( 
+            IDiaSessionEx * This,
+            /* [in] */ ULONG token,
+            /* [in] */ enum SymTagEnum symtag,
+            /* [out] */ IDiaSymbol **ppSymbol);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, symsAreEquiv)
+        HRESULT ( STDMETHODCALLTYPE *symsAreEquiv )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *symbolA,
+            /* [in] */ IDiaSymbol *symbolB);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, symbolById)
+        HRESULT ( STDMETHODCALLTYPE *symbolById )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD id,
+            /* [out] */ IDiaSymbol **ppSymbol);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findSymbolByRVAEx)
+        HRESULT ( STDMETHODCALLTYPE *findSymbolByRVAEx )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD rva,
+            /* [in] */ enum SymTagEnum symtag,
+            /* [out] */ IDiaSymbol **ppSymbol,
+            /* [out] */ long *displacement);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findSymbolByVAEx)
+        HRESULT ( STDMETHODCALLTYPE *findSymbolByVAEx )( 
+            IDiaSessionEx * This,
+            /* [in] */ ULONGLONG va,
+            /* [in] */ enum SymTagEnum symtag,
+            /* [out] */ IDiaSymbol **ppSymbol,
+            /* [out] */ long *displacement);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findFile)
+        HRESULT ( STDMETHODCALLTYPE *findFile )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *pCompiland,
+            /* [in] */ LPCOLESTR name,
+            /* [in] */ DWORD compareFlags,
+            /* [out] */ IDiaEnumSourceFiles **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findFileById)
+        HRESULT ( STDMETHODCALLTYPE *findFileById )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD uniqueId,
+            /* [out] */ IDiaSourceFile **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findLines)
+        HRESULT ( STDMETHODCALLTYPE *findLines )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *compiland,
+            /* [in] */ IDiaSourceFile *file,
+            /* [out] */ IDiaEnumLineNumbers **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findLinesByAddr)
+        HRESULT ( STDMETHODCALLTYPE *findLinesByAddr )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD seg,
+            /* [in] */ DWORD offset,
+            /* [in] */ DWORD length,
+            /* [out] */ IDiaEnumLineNumbers **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findLinesByRVA)
+        HRESULT ( STDMETHODCALLTYPE *findLinesByRVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD rva,
+            /* [in] */ DWORD length,
+            /* [out] */ IDiaEnumLineNumbers **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findLinesByVA)
+        HRESULT ( STDMETHODCALLTYPE *findLinesByVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ ULONGLONG va,
+            /* [in] */ DWORD length,
+            /* [out] */ IDiaEnumLineNumbers **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findLinesByLinenum)
+        HRESULT ( STDMETHODCALLTYPE *findLinesByLinenum )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *compiland,
+            /* [in] */ IDiaSourceFile *file,
+            /* [in] */ DWORD linenum,
+            /* [in] */ DWORD column,
+            /* [out] */ IDiaEnumLineNumbers **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findInjectedSource)
+        HRESULT ( STDMETHODCALLTYPE *findInjectedSource )( 
+            IDiaSessionEx * This,
+            /* [in] */ LPCOLESTR srcFile,
+            /* [out] */ IDiaEnumInjectedSources **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, getEnumDebugStreams)
+        HRESULT ( STDMETHODCALLTYPE *getEnumDebugStreams )( 
+            IDiaSessionEx * This,
+            /* [out] */ IDiaEnumDebugStreams **ppEnumDebugStreams);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findInlineFramesByAddr)
+        HRESULT ( STDMETHODCALLTYPE *findInlineFramesByAddr )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [in] */ DWORD isect,
+            /* [in] */ DWORD offset,
+            /* [out] */ IDiaEnumSymbols **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findInlineFramesByRVA)
+        HRESULT ( STDMETHODCALLTYPE *findInlineFramesByRVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [in] */ DWORD rva,
+            /* [out] */ IDiaEnumSymbols **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findInlineFramesByVA)
+        HRESULT ( STDMETHODCALLTYPE *findInlineFramesByVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [in] */ ULONGLONG va,
+            /* [out] */ IDiaEnumSymbols **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findInlineeLines)
+        HRESULT ( STDMETHODCALLTYPE *findInlineeLines )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [out] */ IDiaEnumLineNumbers **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findInlineeLinesByAddr)
+        HRESULT ( STDMETHODCALLTYPE *findInlineeLinesByAddr )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [in] */ DWORD isect,
+            /* [in] */ DWORD offset,
+            /* [in] */ DWORD length,
+            /* [out] */ IDiaEnumLineNumbers **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findInlineeLinesByRVA)
+        HRESULT ( STDMETHODCALLTYPE *findInlineeLinesByRVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [in] */ DWORD rva,
+            /* [in] */ DWORD length,
+            /* [out] */ IDiaEnumLineNumbers **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findInlineeLinesByVA)
+        HRESULT ( STDMETHODCALLTYPE *findInlineeLinesByVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [in] */ ULONGLONG va,
+            /* [in] */ DWORD length,
+            /* [out] */ IDiaEnumLineNumbers **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findInlineeLinesByLinenum)
+        HRESULT ( STDMETHODCALLTYPE *findInlineeLinesByLinenum )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *compiland,
+            /* [in] */ IDiaSourceFile *file,
+            /* [in] */ DWORD linenum,
+            /* [in] */ DWORD column,
+            /* [out] */ IDiaEnumLineNumbers **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findInlineesByName)
+        HRESULT ( STDMETHODCALLTYPE *findInlineesByName )( 
+            IDiaSessionEx * This,
+            /* [in] */ LPCOLESTR name,
+            /* [in] */ DWORD option,
+            /* [out] */ IDiaEnumSymbols **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findAcceleratorInlineeLinesByLinenum)
+        HRESULT ( STDMETHODCALLTYPE *findAcceleratorInlineeLinesByLinenum )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [in] */ IDiaSourceFile *file,
+            /* [in] */ DWORD linenum,
+            /* [in] */ DWORD column,
+            /* [out] */ IDiaEnumLineNumbers **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findSymbolsForAcceleratorPointerTag)
+        HRESULT ( STDMETHODCALLTYPE *findSymbolsForAcceleratorPointerTag )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [in] */ DWORD tagValue,
+            /* [out] */ IDiaEnumSymbols **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findSymbolsByRVAForAcceleratorPointerTag)
+        HRESULT ( STDMETHODCALLTYPE *findSymbolsByRVAForAcceleratorPointerTag )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [in] */ DWORD tagValue,
+            /* [in] */ DWORD rva,
+            /* [out] */ IDiaEnumSymbols **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findAcceleratorInlineesByName)
+        HRESULT ( STDMETHODCALLTYPE *findAcceleratorInlineesByName )( 
+            IDiaSessionEx * This,
+            /* [in] */ LPCOLESTR name,
+            /* [in] */ DWORD option,
+            /* [out] */ IDiaEnumSymbols **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, addressForVA)
+        HRESULT ( STDMETHODCALLTYPE *addressForVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ ULONGLONG va,
+            /* [out] */ DWORD *pISect,
+            /* [out] */ DWORD *pOffset);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, addressForRVA)
+        HRESULT ( STDMETHODCALLTYPE *addressForRVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD rva,
+            /* [out] */ DWORD *pISect,
+            /* [out] */ DWORD *pOffset);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findILOffsetsByAddr)
+        HRESULT ( STDMETHODCALLTYPE *findILOffsetsByAddr )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD isect,
+            /* [in] */ DWORD offset,
+            /* [in] */ DWORD length,
+            /* [out] */ IDiaEnumLineNumbers **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findILOffsetsByRVA)
+        HRESULT ( STDMETHODCALLTYPE *findILOffsetsByRVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD rva,
+            /* [in] */ DWORD length,
+            /* [out] */ IDiaEnumLineNumbers **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findILOffsetsByVA)
+        HRESULT ( STDMETHODCALLTYPE *findILOffsetsByVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ ULONGLONG va,
+            /* [in] */ DWORD length,
+            /* [out] */ IDiaEnumLineNumbers **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findInputAssemblyFiles)
+        HRESULT ( STDMETHODCALLTYPE *findInputAssemblyFiles )( 
+            IDiaSessionEx * This,
+            /* [out] */ IDiaEnumInputAssemblyFiles **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findInputAssembly)
+        HRESULT ( STDMETHODCALLTYPE *findInputAssembly )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD index,
+            /* [out] */ IDiaInputAssemblyFile **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findInputAssemblyById)
+        HRESULT ( STDMETHODCALLTYPE *findInputAssemblyById )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD uniqueId,
+            /* [out] */ IDiaInputAssemblyFile **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, getFuncMDTokenMapSize)
+        HRESULT ( STDMETHODCALLTYPE *getFuncMDTokenMapSize )( 
+            IDiaSessionEx * This,
+            /* [out] */ DWORD *pcb);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, getFuncMDTokenMap)
+        HRESULT ( STDMETHODCALLTYPE *getFuncMDTokenMap )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD cb,
+            /* [out] */ DWORD *pcb,
+            /* [size_is][out] */ BYTE *pb);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, getTypeMDTokenMapSize)
+        HRESULT ( STDMETHODCALLTYPE *getTypeMDTokenMapSize )( 
+            IDiaSessionEx * This,
+            /* [out] */ DWORD *pcb);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, getTypeMDTokenMap)
+        HRESULT ( STDMETHODCALLTYPE *getTypeMDTokenMap )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD cb,
+            /* [out] */ DWORD *pcb,
+            /* [size_is][out] */ BYTE *pb);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, getNumberOfFunctionFragments_VA)
+        HRESULT ( STDMETHODCALLTYPE *getNumberOfFunctionFragments_VA )( 
+            IDiaSessionEx * This,
+            /* [in] */ ULONGLONG vaFunc,
+            /* [in] */ DWORD cbFunc,
+            /* [out] */ DWORD *pNumFragments);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, getNumberOfFunctionFragments_RVA)
+        HRESULT ( STDMETHODCALLTYPE *getNumberOfFunctionFragments_RVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD rvaFunc,
+            /* [in] */ DWORD cbFunc,
+            /* [out] */ DWORD *pNumFragments);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, getFunctionFragments_VA)
+        HRESULT ( STDMETHODCALLTYPE *getFunctionFragments_VA )( 
+            IDiaSessionEx * This,
+            /* [in] */ ULONGLONG vaFunc,
+            /* [in] */ DWORD cbFunc,
+            /* [in] */ DWORD cFragments,
+            /* [size_is][out] */ ULONGLONG *pVaFragment,
+            /* [size_is][out] */ DWORD *pLenFragment);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, getFunctionFragments_RVA)
+        HRESULT ( STDMETHODCALLTYPE *getFunctionFragments_RVA )( 
+            IDiaSessionEx * This,
+            /* [in] */ DWORD rvaFunc,
+            /* [in] */ DWORD cbFunc,
+            /* [in] */ DWORD cFragments,
+            /* [size_is][out] */ DWORD *pRvaFragment,
+            /* [size_is][out] */ DWORD *pLenFragment);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, getExports)
+        HRESULT ( STDMETHODCALLTYPE *getExports )( 
+            IDiaSessionEx * This,
+            /* [out] */ IDiaEnumSymbols **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, getHeapAllocationSites)
+        HRESULT ( STDMETHODCALLTYPE *getHeapAllocationSites )( 
+            IDiaSessionEx * This,
+            /* [out] */ IDiaEnumSymbols **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSession, findInputAssemblyFile)
+        HRESULT ( STDMETHODCALLTYPE *findInputAssemblyFile )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *pSymbol,
+            /* [out] */ IDiaInputAssemblyFile **ppResult);
+        
+        DECLSPEC_XFGVIRT(IDiaSessionEx, isFastLinkPDB)
+        HRESULT ( STDMETHODCALLTYPE *isFastLinkPDB )( 
+            IDiaSessionEx * This,
+            /* [out] */ BOOL *pfFastLinkPDB);
+        
+        DECLSPEC_XFGVIRT(IDiaSessionEx, isPortablePDB)
+        HRESULT ( STDMETHODCALLTYPE *isPortablePDB )( 
+            IDiaSessionEx * This,
+            /* [out] */ BOOL *pfPortablePDB);
+        
+        DECLSPEC_XFGVIRT(IDiaSessionEx, getSourceLinkInfo)
+        HRESULT ( STDMETHODCALLTYPE *getSourceLinkInfo )( 
+            IDiaSessionEx * This,
+            /* [in] */ IDiaSymbol *parent,
+            /* [out] */ IDiaEnumSourceLink **ppenum);
+        
+        END_INTERFACE
+    } IDiaSessionExVtbl;
+
+    interface IDiaSessionEx
+    {
+        CONST_VTBL struct IDiaSessionExVtbl *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IDiaSessionEx_QueryInterface(This,riid,ppvObject)	\
+    ( (This)->lpVtbl -> QueryInterface(This,riid,ppvObject) ) 
+
+#define IDiaSessionEx_AddRef(This)	\
+    ( (This)->lpVtbl -> AddRef(This) ) 
+
+#define IDiaSessionEx_Release(This)	\
+    ( (This)->lpVtbl -> Release(This) ) 
+
+
+#define IDiaSessionEx_get_loadAddress(This,pRetVal)	\
+    ( (This)->lpVtbl -> get_loadAddress(This,pRetVal) ) 
+
+#define IDiaSessionEx_put_loadAddress(This,NewVal)	\
+    ( (This)->lpVtbl -> put_loadAddress(This,NewVal) ) 
+
+#define IDiaSessionEx_get_globalScope(This,pRetVal)	\
+    ( (This)->lpVtbl -> get_globalScope(This,pRetVal) ) 
+
+#define IDiaSessionEx_getEnumTables(This,ppEnumTables)	\
+    ( (This)->lpVtbl -> getEnumTables(This,ppEnumTables) ) 
+
+#define IDiaSessionEx_getSymbolsByAddr(This,ppEnumbyAddr)	\
+    ( (This)->lpVtbl -> getSymbolsByAddr(This,ppEnumbyAddr) ) 
+
+#define IDiaSessionEx_findChildren(This,parent,symtag,name,compareFlags,ppResult)	\
+    ( (This)->lpVtbl -> findChildren(This,parent,symtag,name,compareFlags,ppResult) ) 
+
+#define IDiaSessionEx_findChildrenEx(This,parent,symtag,name,compareFlags,ppResult)	\
+    ( (This)->lpVtbl -> findChildrenEx(This,parent,symtag,name,compareFlags,ppResult) ) 
+
+#define IDiaSessionEx_findChildrenExByAddr(This,parent,symtag,name,compareFlags,isect,offset,ppResult)	\
+    ( (This)->lpVtbl -> findChildrenExByAddr(This,parent,symtag,name,compareFlags,isect,offset,ppResult) ) 
+
+#define IDiaSessionEx_findChildrenExByVA(This,parent,symtag,name,compareFlags,va,ppResult)	\
+    ( (This)->lpVtbl -> findChildrenExByVA(This,parent,symtag,name,compareFlags,va,ppResult) ) 
+
+#define IDiaSessionEx_findChildrenExByRVA(This,parent,symtag,name,compareFlags,rva,ppResult)	\
+    ( (This)->lpVtbl -> findChildrenExByRVA(This,parent,symtag,name,compareFlags,rva,ppResult) ) 
+
+#define IDiaSessionEx_findSymbolByAddr(This,isect,offset,symtag,ppSymbol)	\
+    ( (This)->lpVtbl -> findSymbolByAddr(This,isect,offset,symtag,ppSymbol) ) 
+
+#define IDiaSessionEx_findSymbolByRVA(This,rva,symtag,ppSymbol)	\
+    ( (This)->lpVtbl -> findSymbolByRVA(This,rva,symtag,ppSymbol) ) 
+
+#define IDiaSessionEx_findSymbolByVA(This,va,symtag,ppSymbol)	\
+    ( (This)->lpVtbl -> findSymbolByVA(This,va,symtag,ppSymbol) ) 
+
+#define IDiaSessionEx_findSymbolByToken(This,token,symtag,ppSymbol)	\
+    ( (This)->lpVtbl -> findSymbolByToken(This,token,symtag,ppSymbol) ) 
+
+#define IDiaSessionEx_symsAreEquiv(This,symbolA,symbolB)	\
+    ( (This)->lpVtbl -> symsAreEquiv(This,symbolA,symbolB) ) 
+
+#define IDiaSessionEx_symbolById(This,id,ppSymbol)	\
+    ( (This)->lpVtbl -> symbolById(This,id,ppSymbol) ) 
+
+#define IDiaSessionEx_findSymbolByRVAEx(This,rva,symtag,ppSymbol,displacement)	\
+    ( (This)->lpVtbl -> findSymbolByRVAEx(This,rva,symtag,ppSymbol,displacement) ) 
+
+#define IDiaSessionEx_findSymbolByVAEx(This,va,symtag,ppSymbol,displacement)	\
+    ( (This)->lpVtbl -> findSymbolByVAEx(This,va,symtag,ppSymbol,displacement) ) 
+
+#define IDiaSessionEx_findFile(This,pCompiland,name,compareFlags,ppResult)	\
+    ( (This)->lpVtbl -> findFile(This,pCompiland,name,compareFlags,ppResult) ) 
+
+#define IDiaSessionEx_findFileById(This,uniqueId,ppResult)	\
+    ( (This)->lpVtbl -> findFileById(This,uniqueId,ppResult) ) 
+
+#define IDiaSessionEx_findLines(This,compiland,file,ppResult)	\
+    ( (This)->lpVtbl -> findLines(This,compiland,file,ppResult) ) 
+
+#define IDiaSessionEx_findLinesByAddr(This,seg,offset,length,ppResult)	\
+    ( (This)->lpVtbl -> findLinesByAddr(This,seg,offset,length,ppResult) ) 
+
+#define IDiaSessionEx_findLinesByRVA(This,rva,length,ppResult)	\
+    ( (This)->lpVtbl -> findLinesByRVA(This,rva,length,ppResult) ) 
+
+#define IDiaSessionEx_findLinesByVA(This,va,length,ppResult)	\
+    ( (This)->lpVtbl -> findLinesByVA(This,va,length,ppResult) ) 
+
+#define IDiaSessionEx_findLinesByLinenum(This,compiland,file,linenum,column,ppResult)	\
+    ( (This)->lpVtbl -> findLinesByLinenum(This,compiland,file,linenum,column,ppResult) ) 
+
+#define IDiaSessionEx_findInjectedSource(This,srcFile,ppResult)	\
+    ( (This)->lpVtbl -> findInjectedSource(This,srcFile,ppResult) ) 
+
+#define IDiaSessionEx_getEnumDebugStreams(This,ppEnumDebugStreams)	\
+    ( (This)->lpVtbl -> getEnumDebugStreams(This,ppEnumDebugStreams) ) 
+
+#define IDiaSessionEx_findInlineFramesByAddr(This,parent,isect,offset,ppResult)	\
+    ( (This)->lpVtbl -> findInlineFramesByAddr(This,parent,isect,offset,ppResult) ) 
+
+#define IDiaSessionEx_findInlineFramesByRVA(This,parent,rva,ppResult)	\
+    ( (This)->lpVtbl -> findInlineFramesByRVA(This,parent,rva,ppResult) ) 
+
+#define IDiaSessionEx_findInlineFramesByVA(This,parent,va,ppResult)	\
+    ( (This)->lpVtbl -> findInlineFramesByVA(This,parent,va,ppResult) ) 
+
+#define IDiaSessionEx_findInlineeLines(This,parent,ppResult)	\
+    ( (This)->lpVtbl -> findInlineeLines(This,parent,ppResult) ) 
+
+#define IDiaSessionEx_findInlineeLinesByAddr(This,parent,isect,offset,length,ppResult)	\
+    ( (This)->lpVtbl -> findInlineeLinesByAddr(This,parent,isect,offset,length,ppResult) ) 
+
+#define IDiaSessionEx_findInlineeLinesByRVA(This,parent,rva,length,ppResult)	\
+    ( (This)->lpVtbl -> findInlineeLinesByRVA(This,parent,rva,length,ppResult) ) 
+
+#define IDiaSessionEx_findInlineeLinesByVA(This,parent,va,length,ppResult)	\
+    ( (This)->lpVtbl -> findInlineeLinesByVA(This,parent,va,length,ppResult) ) 
+
+#define IDiaSessionEx_findInlineeLinesByLinenum(This,compiland,file,linenum,column,ppResult)	\
+    ( (This)->lpVtbl -> findInlineeLinesByLinenum(This,compiland,file,linenum,column,ppResult) ) 
+
+#define IDiaSessionEx_findInlineesByName(This,name,option,ppResult)	\
+    ( (This)->lpVtbl -> findInlineesByName(This,name,option,ppResult) ) 
+
+#define IDiaSessionEx_findAcceleratorInlineeLinesByLinenum(This,parent,file,linenum,column,ppResult)	\
+    ( (This)->lpVtbl -> findAcceleratorInlineeLinesByLinenum(This,parent,file,linenum,column,ppResult) ) 
+
+#define IDiaSessionEx_findSymbolsForAcceleratorPointerTag(This,parent,tagValue,ppResult)	\
+    ( (This)->lpVtbl -> findSymbolsForAcceleratorPointerTag(This,parent,tagValue,ppResult) ) 
+
+#define IDiaSessionEx_findSymbolsByRVAForAcceleratorPointerTag(This,parent,tagValue,rva,ppResult)	\
+    ( (This)->lpVtbl -> findSymbolsByRVAForAcceleratorPointerTag(This,parent,tagValue,rva,ppResult) ) 
+
+#define IDiaSessionEx_findAcceleratorInlineesByName(This,name,option,ppResult)	\
+    ( (This)->lpVtbl -> findAcceleratorInlineesByName(This,name,option,ppResult) ) 
+
+#define IDiaSessionEx_addressForVA(This,va,pISect,pOffset)	\
+    ( (This)->lpVtbl -> addressForVA(This,va,pISect,pOffset) ) 
+
+#define IDiaSessionEx_addressForRVA(This,rva,pISect,pOffset)	\
+    ( (This)->lpVtbl -> addressForRVA(This,rva,pISect,pOffset) ) 
+
+#define IDiaSessionEx_findILOffsetsByAddr(This,isect,offset,length,ppResult)	\
+    ( (This)->lpVtbl -> findILOffsetsByAddr(This,isect,offset,length,ppResult) ) 
+
+#define IDiaSessionEx_findILOffsetsByRVA(This,rva,length,ppResult)	\
+    ( (This)->lpVtbl -> findILOffsetsByRVA(This,rva,length,ppResult) ) 
+
+#define IDiaSessionEx_findILOffsetsByVA(This,va,length,ppResult)	\
+    ( (This)->lpVtbl -> findILOffsetsByVA(This,va,length,ppResult) ) 
+
+#define IDiaSessionEx_findInputAssemblyFiles(This,ppResult)	\
+    ( (This)->lpVtbl -> findInputAssemblyFiles(This,ppResult) ) 
+
+#define IDiaSessionEx_findInputAssembly(This,index,ppResult)	\
+    ( (This)->lpVtbl -> findInputAssembly(This,index,ppResult) ) 
+
+#define IDiaSessionEx_findInputAssemblyById(This,uniqueId,ppResult)	\
+    ( (This)->lpVtbl -> findInputAssemblyById(This,uniqueId,ppResult) ) 
+
+#define IDiaSessionEx_getFuncMDTokenMapSize(This,pcb)	\
+    ( (This)->lpVtbl -> getFuncMDTokenMapSize(This,pcb) ) 
+
+#define IDiaSessionEx_getFuncMDTokenMap(This,cb,pcb,pb)	\
+    ( (This)->lpVtbl -> getFuncMDTokenMap(This,cb,pcb,pb) ) 
+
+#define IDiaSessionEx_getTypeMDTokenMapSize(This,pcb)	\
+    ( (This)->lpVtbl -> getTypeMDTokenMapSize(This,pcb) ) 
+
+#define IDiaSessionEx_getTypeMDTokenMap(This,cb,pcb,pb)	\
+    ( (This)->lpVtbl -> getTypeMDTokenMap(This,cb,pcb,pb) ) 
+
+#define IDiaSessionEx_getNumberOfFunctionFragments_VA(This,vaFunc,cbFunc,pNumFragments)	\
+    ( (This)->lpVtbl -> getNumberOfFunctionFragments_VA(This,vaFunc,cbFunc,pNumFragments) ) 
+
+#define IDiaSessionEx_getNumberOfFunctionFragments_RVA(This,rvaFunc,cbFunc,pNumFragments)	\
+    ( (This)->lpVtbl -> getNumberOfFunctionFragments_RVA(This,rvaFunc,cbFunc,pNumFragments) ) 
+
+#define IDiaSessionEx_getFunctionFragments_VA(This,vaFunc,cbFunc,cFragments,pVaFragment,pLenFragment)	\
+    ( (This)->lpVtbl -> getFunctionFragments_VA(This,vaFunc,cbFunc,cFragments,pVaFragment,pLenFragment) ) 
+
+#define IDiaSessionEx_getFunctionFragments_RVA(This,rvaFunc,cbFunc,cFragments,pRvaFragment,pLenFragment)	\
+    ( (This)->lpVtbl -> getFunctionFragments_RVA(This,rvaFunc,cbFunc,cFragments,pRvaFragment,pLenFragment) ) 
+
+#define IDiaSessionEx_getExports(This,ppResult)	\
+    ( (This)->lpVtbl -> getExports(This,ppResult) ) 
+
+#define IDiaSessionEx_getHeapAllocationSites(This,ppResult)	\
+    ( (This)->lpVtbl -> getHeapAllocationSites(This,ppResult) ) 
+
+#define IDiaSessionEx_findInputAssemblyFile(This,pSymbol,ppResult)	\
+    ( (This)->lpVtbl -> findInputAssemblyFile(This,pSymbol,ppResult) ) 
+
+
+#define IDiaSessionEx_isFastLinkPDB(This,pfFastLinkPDB)	\
+    ( (This)->lpVtbl -> isFastLinkPDB(This,pfFastLinkPDB) ) 
+
+#define IDiaSessionEx_isPortablePDB(This,pfPortablePDB)	\
+    ( (This)->lpVtbl -> isPortablePDB(This,pfPortablePDB) ) 
+
+#define IDiaSessionEx_getSourceLinkInfo(This,parent,ppenum)	\
+    ( (This)->lpVtbl -> getSourceLinkInfo(This,parent,ppenum) ) 
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+
+#endif 	/* __IDiaSessionEx_INTERFACE_DEFINED__ */
 
 
 #ifndef __IDiaSymbol_INTERFACE_DEFINED__
@@ -27608,7 +28917,7 @@ void __RPC_STUB IDiaSymbol10_get_sourceLink_Stub(
 #endif 	/* __IDiaSymbol10_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_dia2_0000_0029 */
+/* interface __MIDL_itf_dia2_0000_0032 */
 /* [local] */ 
 
 struct DiaTagValue
@@ -27618,8 +28927,8 @@ struct DiaTagValue
     } ;
 
 
-extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0029_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0029_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0032_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0032_v0_0_s_ifspec;
 
 #ifndef __IDiaSymbol11_INTERFACE_DEFINED__
 #define __IDiaSymbol11_INTERFACE_DEFINED__
@@ -30993,22 +32302,6 @@ EXTERN_C const IID IID_IDiaInjectedSource;
 #endif 	/* __IDiaInjectedSource_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_dia2_0000_0036 */
-/* [local] */ 
-
-
-enum __MIDL___MIDL_itf_dia2_0000_0036_0001
-    {
-        E_DIA_INPROLOG	= ( HRESULT  )(( ( ( ( unsigned long  )1 << 31 )  | ( ( unsigned long  )( LONG  )0x6d << 16 )  )  | ( unsigned long  )100 ) ),
-        E_DIA_SYNTAX	= ( E_DIA_INPROLOG + 1 ) ,
-        E_DIA_FRAME_ACCESS	= ( E_DIA_SYNTAX + 1 ) ,
-        E_DIA_VALUE	= ( E_DIA_FRAME_ACCESS + 1 ) 
-    } ;
-
-
-extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0036_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0036_v0_0_s_ifspec;
-
 #ifndef __IDiaStackWalkFrame_INTERFACE_DEFINED__
 #define __IDiaStackWalkFrame_INTERFACE_DEFINED__
 
@@ -31842,6 +33135,296 @@ EXTERN_C const IID IID_IDiaEnumTables;
 #endif 	/* __IDiaEnumTables_INTERFACE_DEFINED__ */
 
 
+#ifndef __IDiaEnumSourceLink_INTERFACE_DEFINED__
+#define __IDiaEnumSourceLink_INTERFACE_DEFINED__
+
+/* interface IDiaEnumSourceLink */
+/* [unique][helpstring][local][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IDiaEnumSourceLink;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("45cd1eb3-5c6c-43e3-b20a-a4d8035de4e2")
+    IDiaEnumSourceLink : public IUnknown
+    {
+    public:
+        virtual HRESULT STDMETHODCALLTYPE Count( 
+            /* [out] */ DWORD *pCnt) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE SizeOfNext( 
+            /* [out] */ DWORD *pcb) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Next( 
+            /* [in] */ DWORD cb,
+            /* [out] */ DWORD *pcb,
+            /* [size_is][out] */ BYTE *pb) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Skip( 
+            /* [in] */ DWORD cnt) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Reset( void) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Clone( 
+            /* [out] */ IDiaEnumSourceLink **ppenum) = 0;
+        
+    };
+    
+    
+#else 	/* C style interface */
+
+    typedef struct IDiaEnumSourceLinkVtbl
+    {
+        BEGIN_INTERFACE
+        
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
+        HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
+            IDiaEnumSourceLink * This,
+            /* [in] */ REFIID riid,
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
+        
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
+        ULONG ( STDMETHODCALLTYPE *AddRef )( 
+            IDiaEnumSourceLink * This);
+        
+        DECLSPEC_XFGVIRT(IUnknown, Release)
+        ULONG ( STDMETHODCALLTYPE *Release )( 
+            IDiaEnumSourceLink * This);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumSourceLink, Count)
+        HRESULT ( STDMETHODCALLTYPE *Count )( 
+            IDiaEnumSourceLink * This,
+            /* [out] */ DWORD *pCnt);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumSourceLink, SizeOfNext)
+        HRESULT ( STDMETHODCALLTYPE *SizeOfNext )( 
+            IDiaEnumSourceLink * This,
+            /* [out] */ DWORD *pcb);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumSourceLink, Next)
+        HRESULT ( STDMETHODCALLTYPE *Next )( 
+            IDiaEnumSourceLink * This,
+            /* [in] */ DWORD cb,
+            /* [out] */ DWORD *pcb,
+            /* [size_is][out] */ BYTE *pb);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumSourceLink, Skip)
+        HRESULT ( STDMETHODCALLTYPE *Skip )( 
+            IDiaEnumSourceLink * This,
+            /* [in] */ DWORD cnt);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumSourceLink, Reset)
+        HRESULT ( STDMETHODCALLTYPE *Reset )( 
+            IDiaEnumSourceLink * This);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumSourceLink, Clone)
+        HRESULT ( STDMETHODCALLTYPE *Clone )( 
+            IDiaEnumSourceLink * This,
+            /* [out] */ IDiaEnumSourceLink **ppenum);
+        
+        END_INTERFACE
+    } IDiaEnumSourceLinkVtbl;
+
+    interface IDiaEnumSourceLink
+    {
+        CONST_VTBL struct IDiaEnumSourceLinkVtbl *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IDiaEnumSourceLink_QueryInterface(This,riid,ppvObject)	\
+    ( (This)->lpVtbl -> QueryInterface(This,riid,ppvObject) ) 
+
+#define IDiaEnumSourceLink_AddRef(This)	\
+    ( (This)->lpVtbl -> AddRef(This) ) 
+
+#define IDiaEnumSourceLink_Release(This)	\
+    ( (This)->lpVtbl -> Release(This) ) 
+
+
+#define IDiaEnumSourceLink_Count(This,pCnt)	\
+    ( (This)->lpVtbl -> Count(This,pCnt) ) 
+
+#define IDiaEnumSourceLink_SizeOfNext(This,pcb)	\
+    ( (This)->lpVtbl -> SizeOfNext(This,pcb) ) 
+
+#define IDiaEnumSourceLink_Next(This,cb,pcb,pb)	\
+    ( (This)->lpVtbl -> Next(This,cb,pcb,pb) ) 
+
+#define IDiaEnumSourceLink_Skip(This,cnt)	\
+    ( (This)->lpVtbl -> Skip(This,cnt) ) 
+
+#define IDiaEnumSourceLink_Reset(This)	\
+    ( (This)->lpVtbl -> Reset(This) ) 
+
+#define IDiaEnumSourceLink_Clone(This,ppenum)	\
+    ( (This)->lpVtbl -> Clone(This,ppenum) ) 
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+
+#endif 	/* __IDiaEnumSourceLink_INTERFACE_DEFINED__ */
+
+
+#ifndef __IDiaEnumSourceLink2_INTERFACE_DEFINED__
+#define __IDiaEnumSourceLink2_INTERFACE_DEFINED__
+
+/* interface IDiaEnumSourceLink2 */
+/* [unique][helpstring][local][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IDiaEnumSourceLink2;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("136d8151-ade7-4704-af13-324080762e8f")
+    IDiaEnumSourceLink2 : public IDiaEnumSourceLink
+    {
+    public:
+        virtual HRESULT STDMETHODCALLTYPE SizeOfNext2( 
+            /* [out] */ ULONGLONG *pcb) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Next2( 
+            /* [in] */ ULONGLONG cb,
+            /* [out] */ ULONGLONG *pcb,
+            /* [size_is][out] */ BYTE *pb) = 0;
+        
+    };
+    
+    
+#else 	/* C style interface */
+
+    typedef struct IDiaEnumSourceLink2Vtbl
+    {
+        BEGIN_INTERFACE
+        
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
+        HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
+            IDiaEnumSourceLink2 * This,
+            /* [in] */ REFIID riid,
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
+        
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
+        ULONG ( STDMETHODCALLTYPE *AddRef )( 
+            IDiaEnumSourceLink2 * This);
+        
+        DECLSPEC_XFGVIRT(IUnknown, Release)
+        ULONG ( STDMETHODCALLTYPE *Release )( 
+            IDiaEnumSourceLink2 * This);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumSourceLink, Count)
+        HRESULT ( STDMETHODCALLTYPE *Count )( 
+            IDiaEnumSourceLink2 * This,
+            /* [out] */ DWORD *pCnt);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumSourceLink, SizeOfNext)
+        HRESULT ( STDMETHODCALLTYPE *SizeOfNext )( 
+            IDiaEnumSourceLink2 * This,
+            /* [out] */ DWORD *pcb);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumSourceLink, Next)
+        HRESULT ( STDMETHODCALLTYPE *Next )( 
+            IDiaEnumSourceLink2 * This,
+            /* [in] */ DWORD cb,
+            /* [out] */ DWORD *pcb,
+            /* [size_is][out] */ BYTE *pb);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumSourceLink, Skip)
+        HRESULT ( STDMETHODCALLTYPE *Skip )( 
+            IDiaEnumSourceLink2 * This,
+            /* [in] */ DWORD cnt);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumSourceLink, Reset)
+        HRESULT ( STDMETHODCALLTYPE *Reset )( 
+            IDiaEnumSourceLink2 * This);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumSourceLink, Clone)
+        HRESULT ( STDMETHODCALLTYPE *Clone )( 
+            IDiaEnumSourceLink2 * This,
+            /* [out] */ IDiaEnumSourceLink **ppenum);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumSourceLink2, SizeOfNext2)
+        HRESULT ( STDMETHODCALLTYPE *SizeOfNext2 )( 
+            IDiaEnumSourceLink2 * This,
+            /* [out] */ ULONGLONG *pcb);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumSourceLink2, Next2)
+        HRESULT ( STDMETHODCALLTYPE *Next2 )( 
+            IDiaEnumSourceLink2 * This,
+            /* [in] */ ULONGLONG cb,
+            /* [out] */ ULONGLONG *pcb,
+            /* [size_is][out] */ BYTE *pb);
+        
+        END_INTERFACE
+    } IDiaEnumSourceLink2Vtbl;
+
+    interface IDiaEnumSourceLink2
+    {
+        CONST_VTBL struct IDiaEnumSourceLink2Vtbl *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IDiaEnumSourceLink2_QueryInterface(This,riid,ppvObject)	\
+    ( (This)->lpVtbl -> QueryInterface(This,riid,ppvObject) ) 
+
+#define IDiaEnumSourceLink2_AddRef(This)	\
+    ( (This)->lpVtbl -> AddRef(This) ) 
+
+#define IDiaEnumSourceLink2_Release(This)	\
+    ( (This)->lpVtbl -> Release(This) ) 
+
+
+#define IDiaEnumSourceLink2_Count(This,pCnt)	\
+    ( (This)->lpVtbl -> Count(This,pCnt) ) 
+
+#define IDiaEnumSourceLink2_SizeOfNext(This,pcb)	\
+    ( (This)->lpVtbl -> SizeOfNext(This,pcb) ) 
+
+#define IDiaEnumSourceLink2_Next(This,cb,pcb,pb)	\
+    ( (This)->lpVtbl -> Next(This,cb,pcb,pb) ) 
+
+#define IDiaEnumSourceLink2_Skip(This,cnt)	\
+    ( (This)->lpVtbl -> Skip(This,cnt) ) 
+
+#define IDiaEnumSourceLink2_Reset(This)	\
+    ( (This)->lpVtbl -> Reset(This) ) 
+
+#define IDiaEnumSourceLink2_Clone(This,ppenum)	\
+    ( (This)->lpVtbl -> Clone(This,ppenum) ) 
+
+
+#define IDiaEnumSourceLink2_SizeOfNext2(This,pcb)	\
+    ( (This)->lpVtbl -> SizeOfNext2(This,pcb) ) 
+
+#define IDiaEnumSourceLink2_Next2(This,cb,pcb,pb)	\
+    ( (This)->lpVtbl -> Next2(This,cb,pcb,pb) ) 
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+
+#endif 	/* __IDiaEnumSourceLink2_INTERFACE_DEFINED__ */
+
+
 
 #ifndef __Dia2Lib_LIBRARY_DEFINED__
 #define __Dia2Lib_LIBRARY_DEFINED__
@@ -31881,7 +33464,7 @@ DiaStackWalker;
 #endif
 #endif /* __Dia2Lib_LIBRARY_DEFINED__ */
 
-/* interface __MIDL_itf_dia2_0000_0042 */
+/* interface __MIDL_itf_dia2_0000_0047 */
 /* [local] */ 
 
 #define	DiaTable_Symbols	( L"Symbols" )
@@ -31904,8 +33487,8 @@ DiaStackWalker;
 
 
 
-extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0042_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0042_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0047_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0047_v0_0_s_ifspec;
 
 #ifndef __IDiaPropertyStorage_INTERFACE_DEFINED__
 #define __IDiaPropertyStorage_INTERFACE_DEFINED__
@@ -32423,10 +34006,10 @@ EXTERN_C const IID IID_IDiaEnumStackFrames;
 #endif 	/* __IDiaEnumStackFrames_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_dia2_0000_0045 */
+/* interface __MIDL_itf_dia2_0000_0050 */
 /* [local] */ 
 
-typedef /* [public] */ struct __MIDL___MIDL_itf_dia2_0000_0045_0001
+typedef /* [public] */ struct __MIDL___MIDL_itf_dia2_0000_0050_0001
     {
     DWORD ulOffStart;
     DWORD cbProcSize;
@@ -32437,8 +34020,8 @@ typedef /* [public] */ struct __MIDL___MIDL_itf_dia2_0000_0045_0001
 
 
 
-extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0045_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0045_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0050_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_dia2_0000_0050_v0_0_s_ifspec;
 
 #ifndef __IDiaStackWalkHelper_INTERFACE_DEFINED__
 #define __IDiaStackWalkHelper_INTERFACE_DEFINED__
@@ -32807,6 +34390,10 @@ EXTERN_C const IID IID_IDiaStackWalkHelper2;
     IDiaStackWalkHelper2 : public IDiaStackWalkHelper
     {
     public:
+        virtual HRESULT STDMETHODCALLTYPE GetPointerAuthenticationMask( 
+            /* [in] */ ULONG64 PtrVal,
+            /* [out] */ ULONG64 *AuthMask) = 0;
+        
     };
     
     
@@ -32914,6 +34501,12 @@ EXTERN_C const IID IID_IDiaStackWalkHelper2;
             /* [out] */ ULONGLONG *pVaFragment,
             /* [out] */ DWORD *pLenFragment);
         
+        DECLSPEC_XFGVIRT(IDiaStackWalkHelper2, GetPointerAuthenticationMask)
+        HRESULT ( STDMETHODCALLTYPE *GetPointerAuthenticationMask )( 
+            IDiaStackWalkHelper2 * This,
+            /* [in] */ ULONG64 PtrVal,
+            /* [out] */ ULONG64 *AuthMask);
+        
         END_INTERFACE
     } IDiaStackWalkHelper2Vtbl;
 
@@ -32973,6 +34566,9 @@ EXTERN_C const IID IID_IDiaStackWalkHelper2;
 #define IDiaStackWalkHelper2_functionFragmentsForVA(This,vaFunc,cbFunc,cFragments,pVaFragment,pLenFragment)	\
     ( (This)->lpVtbl -> functionFragmentsForVA(This,vaFunc,cbFunc,cFragments,pVaFragment,pLenFragment) ) 
 
+
+#define IDiaStackWalkHelper2_GetPointerAuthenticationMask(This,PtrVal,AuthMask)	\
+    ( (This)->lpVtbl -> GetPointerAuthenticationMask(This,PtrVal,AuthMask) ) 
 
 #endif /* COBJMACROS */
 
@@ -33076,6 +34672,143 @@ EXTERN_C const IID IID_IDiaStackWalker2;
 
 
 #endif 	/* __IDiaStackWalker2_INTERFACE_DEFINED__ */
+
+
+#ifndef __IDiaEnumNamedStreams_INTERFACE_DEFINED__
+#define __IDiaEnumNamedStreams_INTERFACE_DEFINED__
+
+/* interface IDiaEnumNamedStreams */
+/* [unique][helpstring][local][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IDiaEnumNamedStreams;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("2B01F5E0-98DB-4824-A9A0-5192833BEF47")
+    IDiaEnumNamedStreams : public IUnknown
+    {
+    public:
+        virtual /* [id][helpstring][propget] */ HRESULT STDMETHODCALLTYPE get__NewEnum( 
+            /* [retval][out] */ IUnknown **pRetVal) = 0;
+        
+        virtual /* [id][helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_Count( 
+            /* [retval][out] */ LONG *pRetVal) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Next( 
+            /* [out] */ BSTR *pName) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Skip( 
+            /* [in] */ ULONG celt) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Reset( void) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Clone( 
+            /* [out] */ IDiaEnumNamedStreams **ppenum) = 0;
+        
+    };
+    
+    
+#else 	/* C style interface */
+
+    typedef struct IDiaEnumNamedStreamsVtbl
+    {
+        BEGIN_INTERFACE
+        
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
+        HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
+            IDiaEnumNamedStreams * This,
+            /* [in] */ REFIID riid,
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
+        
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
+        ULONG ( STDMETHODCALLTYPE *AddRef )( 
+            IDiaEnumNamedStreams * This);
+        
+        DECLSPEC_XFGVIRT(IUnknown, Release)
+        ULONG ( STDMETHODCALLTYPE *Release )( 
+            IDiaEnumNamedStreams * This);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumNamedStreams, get__NewEnum)
+        /* [id][helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get__NewEnum )( 
+            IDiaEnumNamedStreams * This,
+            /* [retval][out] */ IUnknown **pRetVal);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumNamedStreams, get_Count)
+        /* [id][helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_Count )( 
+            IDiaEnumNamedStreams * This,
+            /* [retval][out] */ LONG *pRetVal);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumNamedStreams, Next)
+        HRESULT ( STDMETHODCALLTYPE *Next )( 
+            IDiaEnumNamedStreams * This,
+            /* [out] */ BSTR *pName);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumNamedStreams, Skip)
+        HRESULT ( STDMETHODCALLTYPE *Skip )( 
+            IDiaEnumNamedStreams * This,
+            /* [in] */ ULONG celt);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumNamedStreams, Reset)
+        HRESULT ( STDMETHODCALLTYPE *Reset )( 
+            IDiaEnumNamedStreams * This);
+        
+        DECLSPEC_XFGVIRT(IDiaEnumNamedStreams, Clone)
+        HRESULT ( STDMETHODCALLTYPE *Clone )( 
+            IDiaEnumNamedStreams * This,
+            /* [out] */ IDiaEnumNamedStreams **ppenum);
+        
+        END_INTERFACE
+    } IDiaEnumNamedStreamsVtbl;
+
+    interface IDiaEnumNamedStreams
+    {
+        CONST_VTBL struct IDiaEnumNamedStreamsVtbl *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IDiaEnumNamedStreams_QueryInterface(This,riid,ppvObject)	\
+    ( (This)->lpVtbl -> QueryInterface(This,riid,ppvObject) ) 
+
+#define IDiaEnumNamedStreams_AddRef(This)	\
+    ( (This)->lpVtbl -> AddRef(This) ) 
+
+#define IDiaEnumNamedStreams_Release(This)	\
+    ( (This)->lpVtbl -> Release(This) ) 
+
+
+#define IDiaEnumNamedStreams_get__NewEnum(This,pRetVal)	\
+    ( (This)->lpVtbl -> get__NewEnum(This,pRetVal) ) 
+
+#define IDiaEnumNamedStreams_get_Count(This,pRetVal)	\
+    ( (This)->lpVtbl -> get_Count(This,pRetVal) ) 
+
+#define IDiaEnumNamedStreams_Next(This,pName)	\
+    ( (This)->lpVtbl -> Next(This,pName) ) 
+
+#define IDiaEnumNamedStreams_Skip(This,celt)	\
+    ( (This)->lpVtbl -> Skip(This,celt) ) 
+
+#define IDiaEnumNamedStreams_Reset(This)	\
+    ( (This)->lpVtbl -> Reset(This) ) 
+
+#define IDiaEnumNamedStreams_Clone(This,ppenum)	\
+    ( (This)->lpVtbl -> Clone(This,ppenum) ) 
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+
+#endif 	/* __IDiaEnumNamedStreams_INTERFACE_DEFINED__ */
 
 
 /* Additional Prototypes for ALL interfaces */
